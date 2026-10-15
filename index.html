@@ -5,40 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A-Frame | A minha primeira cena 3D</title>
+    <title>A-Frame - Cena 3D</title>
 
-    <!-- Biblioteca A-Frame -->
     <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
 
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #111827;
         }
 
         .info {
-            position: absolute;
+            position: fixed;
             top: 15px;
             left: 15px;
             z-index: 10;
-            color: white;
-            background: rgba(17, 24, 39, 0.85);
-            padding: 14px 18px;
+            padding: 15px 20px;
+            background: rgba(15, 23, 42, 0.92);
+            color: #FFFFFF;
+            border: 1px solid #38BDF8;
             border-radius: 12px;
-            max-width: 290px;
-            line-height: 1.5;
-            pointer-events: none;
+            max-width: 280px;
         }
 
         .info h1 {
-            margin: 0 0 6px;
+            margin: 0 0 8px;
+            color: #38BDF8;
             font-size: 20px;
-            color: #4CC3D9;
         }
 
         .info p {
-            margin: 4px 0;
+            margin: 5px 0;
             font-size: 13px;
         }
     </style>
@@ -46,97 +43,88 @@
 
 <body>
 
-    <!-- Informação apresentada na página -->
     <div class="info">
-        <h1>A-Frame | Experiência 3D</h1>
-        <p>Projeto de Realidade Virtual</p>
+        <h1>O meu mundo 3D</h1>
+        <p>Projeto A-Frame</p>
         <p>Autor: Gabriel Pereira</p>
-        <p>Explora a cena com o rato ou o telemóvel.</p>
+        <p>Explora o espaço com o rato.</p>
     </div>
 
-    <!-- Cena 3D -->
     <a-scene
-        background="color: #111827"
+        background="color: #10152F"
         renderer="antialias: true"
         vr-mode-ui="enabled: true">
 
-        <!-- Iluminação -->
+        <!-- Iluminação geral -->
         <a-entity
             light="type: ambient; color: #FFFFFF; intensity: 0.8">
         </a-entity>
 
         <a-entity
-            light="type: directional; color: #FFFFFF; intensity: 1.2"
-            position="-3 5 2">
+            light="type: directional; color: #FFFFFF; intensity: 1.5"
+            position="-3 6 4">
         </a-entity>
 
-        <!-- Cubo -->
+        <!-- Cubo azul-turquesa -->
         <a-box
-            position="-1 1 -3"
-            rotation="0 45 0"
-            width="1.2"
-            height="1.2"
-            depth="1.2"
-            color="#4CC3D9"
-            shadow>
+            position="-1.5 1 -4"
+            rotation="0 35 0"
+            width="1.3"
+            height="1.3"
+            depth="1.3"
+            color="#00E5FF">
         </a-box>
 
-        <!-- Esfera -->
+        <!-- Esfera rosa -->
         <a-sphere
-            position="0 1.25 -5"
-            radius="0.8"
-            color="#EF2D5E"
+            position="0 1.3 -5"
+            radius="0.85"
+            color="#FF3CAC"
             segments-width="32"
-            segments-height="24"
-            shadow>
+            segments-height="24">
         </a-sphere>
 
-        <!-- Cilindro -->
+        <!-- Cilindro amarelo -->
         <a-cylinder
-            position="1.5 0.75 -3.5"
+            position="1.7 0.9 -4"
             radius="0.5"
-            height="1.5"
-            color="#FFC65D"
-            shadow>
+            height="1.8"
+            color="#FFE14D">
         </a-cylinder>
 
-        <!-- Chão -->
+        <!-- Plano verde -->
         <a-plane
             position="0 0 -4"
             rotation="-90 0 0"
             width="20"
             height="20"
-            color="#7BC8A4"
-            shadow>
+            color="#243B55">
         </a-plane>
 
-        <!-- Texto na cena -->
+        <!-- Texto principal -->
         <a-text
-            value="Ola, A-Frame!"
-            position="-1.2 2.5 -4"
+            value="BEM-VINDO AO A-FRAME"
+            position="-1.8 3 -4"
             color="#FFFFFF"
-            width="5"
+            width="6"
             align="center">
         </a-text>
 
         <a-text
-            value="A minha primeira experiencia 3D"
-            position="-1.5 2.15 -4"
-            color="#D1D5DB"
-            width="5"
+            value="Explora a minha primeira cena 3D"
+            position="-1.8 2.65 -4"
+            color="#38BDF8"
+            width="5.5"
             align="center">
         </a-text>
 
-        <!-- Céu -->
-        <a-sky color="#172554"></a-sky>
+        <!-- Fundo do ambiente -->
+        <a-sky color="#10152F"></a-sky>
 
-        <!-- Câmara e controlos -->
+        <!-- Câmara -->
         <a-entity position="0 1.6 0">
             <a-camera look-controls wasd-controls>
-                <a-cursor
-                    color="#FFFFFF"
-                    fuse="false">
-                </a-cursor>
+                <a-cursor color="#FFFFFF"></a-cursor>
             </a-camera>
         </a-entity>
 
