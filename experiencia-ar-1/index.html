@@ -1,125 +1,97 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiência AR 1 - Globo Giratório</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiência AR - Planeta Terra</title>
 
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
 
-        .painel {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            z-index: 10;
-            padding: 14px;
-            max-width: 270px;
-            color: white;
-            background: rgba(8, 18, 43, 0.9);
-            border: 1px solid #38bdf8;
-            border-radius: 12px;
-            pointer-events: none;
-        }
-
-        h1 {
-            margin: 0 0 8px;
-            color: #7dd3fc;
-            font-size: 19px;
-        }
-
-        p {
-            font-size: 13px;
-            line-height: 1.5;
-        }
-    </style>
+    .info {
+      position: fixed;
+      top: 12px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      z-index: 10;
+      pointer-events: none;
+      text-shadow: 0 2px 5px black;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="info">
+    <h3>PLANETA TERRA</h3>
+    <p>Aponta a câmara para o marcador Hiro</p>
+  </div>
 
-    <div class="painel">
-        <h1>🌍 Globo Giratório</h1>
-        <p>Experiência de Realidade Aumentada</p>
-        <p>Aponta a câmara para o marcador HIRO.</p>
-    </div>
+  <a-scene
+    embedded
+    arjs="sourceType: webcam; debugUIEnabled: false;"
+    renderer="antialias: true; alpha: true"
+    vr-mode-ui="enabled: false">
 
-    <a-scene
-        embedded
-        vr-mode-ui="enabled: false"
-        renderer="antialias: true"
-        arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-assets>
+      <img
+        id="earthTexture"
+        src="https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg"
+        crossorigin="anonymous">
+    </a-assets>
 
-        <a-entity
-            light="type: ambient; color: #ffffff; intensity: 1.2">
-        </a-entity>
+    <a-marker preset="hiro" smooth="true">
 
-        <a-entity
-            light="type: directional; color: #ffffff; intensity: 1.5"
-            position="-3 5 4">
-        </a-entity>
+      <!-- Planeta Terra -->
+      <a-sphere
+        position="0 0.8 0"
+        radius="0.65"
+        material="src: #earthTexture; roughness: 1"
+        animation="property: rotation;
+                   to: 0 360 0;
+                   loop: true;
+                   dur: 12000;
+                   easing: linear">
+      </a-sphere>
 
-        <a-marker preset="hiro" smooth="true">
+      <!-- Órbita decorativa -->
+      <a-torus
+        position="0 0.8 0"
+        rotation="65 0 0"
+        radius="0.95"
+        radius-tubular="0.012"
+        material="color: #55DFFF; metalness: 0.5">
+      </a-torus>
 
-            <!-- Base do planeta -->
-            <a-cylinder
-                position="0 0.08 0"
-                radius="0.8"
-                height="0.12"
-                color="#12345a">
-            </a-cylinder>
+      <!-- Base luminosa -->
+      <a-cylinder
+        position="0 0.05 0"
+        radius="0.48"
+        height="0.06"
+        material="color: #168BFF; emissive: #064A99">
+      </a-cylinder>
 
-            <!-- Planeta Terra -->
-            <a-sphere
-                position="0 1.15 0"
-                radius="0.72"
-                segments-width="48"
-                segments-height="32"
-                material="src: url(https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg)"
-                animation="property: rotation; to: 0 360 0; dur: 10000; easing: linear; loop: true">
-            </a-sphere>
+      <!-- Título sobre o marcador -->
+      <a-text
+        value="PLANETA TERRA"
+        position="0 1.65 0"
+        align="center"
+        color="#FFFFFF"
+        width="3"
+        shader="msdf">
+      </a-text>
 
-            <!-- Aro animado -->
-            <a-torus
-                position="0 1.15 0"
-                rotation="65 0 0"
-                radius="0.9"
-                radius-tubular="0.015"
-                color="#38bdf8"
-                animation="property: rotation; to: 65 360 0; dur: 14000; easing: linear; loop: true">
-            </a-torus>
+    </a-marker>
 
-            <!-- Texto -->
-            <a-text
-                value="PLANETA TERRA"
-                position="0 2.15 0"
-                rotation="-90 0 0"
-                align="center"
-                color="#ffffff"
-                width="4">
-            </a-text>
-
-            <a-text
-                value="Globo em rotacao continua"
-                position="0 2.0 0"
-                rotation="-90 0 0"
-                align="center"
-                color="#7dd3fc"
-                width="3">
-            </a-text>
-
-        </a-marker>
-
-        <a-entity camera></a-entity>
-
-    </a-scene>
-
+    <a-entity camera></a-entity>
+  </a-scene>
 </body>
 </html>
